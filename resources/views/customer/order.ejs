@@ -1,0 +1,59 @@
+<h1 class="text-center mt-12">Order History</h1>
+
+
+<% for(let order=0;order<arr.length;order++){ %>
+  
+  <div 
+  
+    class="text-amber-700 rounded-md bg-slate-100 w-3/4 mx-auto border-solid border-2 border-slate-200 my-12"
+  >
+  <a href="/customer/order/<%=arr[order]._id  %> ">
+    <div class="flex items-center my-1">
+      <div class="text-center w-1/4 text-2xl underline underline-offset-2 text-blue-600 font-bold btn">Track Me</div>
+      <div class="mx-auto w-1/4">
+        <img
+          class="w-20 h-16 mx-auto"
+          src="/img/<%=arr[order].status%>.png"
+          alt=""
+        />
+      </div>
+      <div class="text-center w-1/4"><h3 class="text-lg"><%=arr[order].status %></h3></div>
+      <div class="text-sm font-none w-1/4 font-mono text-center">
+        <h4 class="">last updated: <%=moment(arr[order]. updatedAt).format('hh:mm A DD-MM-YY') %></h4>
+      </div>
+    </div>
+
+    <hr class="border-solid border-2 border-slate-200 bg-slate-200" />
+
+    <% for(let element of Object.values(arr[order].items)){ %>
+    <div class="flex py-4 mx-auto items-center   text-lg">
+      <div>
+        <img
+          class=" rounded-md mx-auto w-2/4"
+          src="/img/<%=element.item.img%> "
+          alt=""
+        />
+      </div>
+      <div class="text-center w-1/4 ">
+        <h2><%= element.item.P_name %></h2>
+      </div>
+      <div class="text-center w-1/4 ">
+        <span>Qty: <%= element.qty %> </span>
+      </div>
+      <div class="text-center w-1/4 ">
+        <span>₹<%= element.item.Price %> </span>
+      </div>
+    </div>
+    <% } %>
+
+    <hr class="border-solid border-2 border-slate-200 bg-slate-200" />
+    <div class="flex items-center text-center">
+      <div class="w-6/12"><h2>Payment mode:</h2></div>
+
+      <div class="w-6/12"><h2><%=arr[order].role %></h2></div>
+    </div>
+  </a>
+  </div>
+
+  <% } %>
+
